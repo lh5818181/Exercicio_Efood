@@ -1,4 +1,5 @@
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 import ProductList from "../components/ProductList";
 
 
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <Banner />
        <ProductList />
+       <Footer />
       </div>
   );
 }

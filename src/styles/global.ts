@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const Cores = {
   vermelhoClaro: '#E66767',
-  bege: '#FFEBD9',
+  bege: '#FFF8F2',
   branca: '#fff',
   cinza: '#333',
   cinzaClaro: '#666',
@@ -11,7 +11,7 @@ export const Cores = {
 export default createGlobalStyle`
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: ${Cores.bege};
   }
 
