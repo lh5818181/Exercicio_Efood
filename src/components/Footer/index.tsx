@@ -1,17 +1,16 @@
-import { BannerContainer, Imagem, LogoImagem } from "../Banner/styles";
 import heroImg from '../../assets/Fundo.png';
 import LogoImg from '../../assets/logo.png';
 import InstaIcon from '../../assets/instagram-icon.png'
 import FacebookIcon from '../../assets/facebook-icon.png'
 import TwitterIcon from '../../assets/twitter-icon.png'
-import { FooterText, SocialLinks } from "./styles";
+import { BannerFooterContainer, FooterImagem, FooterText, LogoImagemFooter, SocialLinks } from "./styles";
 
 const Footer = () => {
   return (
-    <BannerContainer>
-    <Imagem style={{ backgroundImage: `url(${heroImg})` }} />
+    <BannerFooterContainer>
+    <FooterImagem style={{ backgroundImage: `url(${heroImg})` }} />
     <div className='container'>
-        <LogoImagem src={LogoImg} alt="Logo" /> 
+        <LogoImagemFooter src={LogoImg} alt="Logo" /> 
         <SocialLinks>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <img src={InstaIcon} alt="Instagram" width={32} height={32} />
@@ -26,7 +25,7 @@ const Footer = () => {
         <FooterText>A efood é uma plataforma para divulgação de estabelecimentos, a responsabilidade pela entrega, qualidade <br /> 
         dos produtos é toda do estabelecimento contratado.</FooterText>
     </div>
-    </BannerContainer>
+    </BannerFooterContainer>
   );
 }
 
