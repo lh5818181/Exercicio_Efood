@@ -1,55 +1,34 @@
-import { ProductContainer, Card, Descricao, Button, Titulo } from "./styles";
+import { ProductContainer, Card, Descricao, Button, Titulo, Infos, ContainerTagTitle } from "./styles";
 
-import productImg from "../../assets/Hioki Sushi.png";
+import Tag from "../Tag";
 
-const Product = () => {
+type Props = {
+  titulo: string;
+  nota: string;
+  image: string;
+  ImageStar: string;
+  descricao: string;
+  infos: string[]
+}
+
+const Product = ({ titulo, nota, image, ImageStar, descricao, infos }: Props) => {
   return (
     <ProductContainer>
       <Card>
-      <img  src={productImg} alt="Product Image" />
+      <img  src={image} alt={''}/>
+      <Infos>
+        {infos.map(info => <Tag key={info}>{info}</Tag>)}
+      </Infos>
       <div className="containerProduct">
-      <Titulo>Hioki Sushi</Titulo>
-      <Descricao>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!</Descricao>
-        <Button>Saiba mais</Button>
-      </div>
-      </Card>
-            <Card>
-      <img  src={productImg} alt="Product Image" />
-      <div className="containerProduct">
-      <Titulo>Hioki Sushi</Titulo>
-      <Descricao>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!</Descricao>
-        <Button>Saiba mais</Button>
-      </div>
-      </Card>
-            <Card>
-      <img  src={productImg} alt="Product Image" />
-      <div className="containerProduct">
-      <Titulo>Hioki Sushi</Titulo>
-      <Descricao>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!</Descricao>
-        <Button>Saiba mais</Button>
-      </div>
-      </Card>
-      <Card>
-      <img  src={productImg} alt="Product Image" />
-      <div className="containerProduct">
-      <Titulo>Hioki Sushi</Titulo>
-      <Descricao>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!</Descricao>
-        <Button>Saiba mais</Button>
-      </div>
-      </Card>
-      <Card>
-      <img  src={productImg} alt="Product Image" />
-      <div className="containerProduct">
-      <Titulo>Hioki Sushi</Titulo>
-      <Descricao>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!</Descricao>
-        <Button>Saiba mais</Button>
-      </div>
-      </Card>
-      <Card>
-      <img  src={productImg} alt="Product Image" />
-      <div className="containerProduct">
-      <Titulo>Hioki Sushi</Titulo>
-      <Descricao>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!</Descricao>
+      <ContainerTagTitle>
+      <Titulo>{titulo}</Titulo>
+      <Tag >
+        {nota}
+        <img src={ImageStar} alt={''} />
+      </Tag>
+      </ContainerTagTitle>
+
+      <Descricao>{descricao}</Descricao>
         <Button>Saiba mais</Button>
       </div>
       </Card>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Cores } from '../../styles/global';
+import { TagContainer } from '../Tag/styles';
 
 
 export const ProductContainer = styled.div`
@@ -7,7 +8,26 @@ export const ProductContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 
+  .containerTagTitle {
+    display: flex
+;
+    justify-content: space-between;}
+
+
 `;
+
+export const ContainerTagTitle = styled.div`
+  color: ${Cores.vermelhoClaro};
+  font-size: 18px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+
+  img {
+  margin-left: 8px;
+}
+`
+
 
 export const Card = styled.div`
   background-color: ${Cores.branca};
@@ -17,9 +37,12 @@ export const Card = styled.div`
   width: 473px;
   height: 398;
   margin-bottom: 48px;
+  position: relative;
 
   .containerProduct {
-    padding: 0px 22px;}
+    padding: 0px 22px;
+    
+    }
 
 `
 export const Titulo = styled.h3`
@@ -52,3 +75,12 @@ export const ProductImage = styled.img`
     width: 472px;
     height: 217px;
 `
+
+export const Infos = styled.div`
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    
+    & > * + * {
+        margin-left: 8px;
+    }`
