@@ -1,6 +1,15 @@
-import { ProductContainer, Card, Descricao, Button, Titulo, Infos, ContainerTagTitle } from "./styles";
-
-import Tag from "../Tag";
+import {
+  ProductContainer,
+  Card,
+  Descricao,
+  Button,
+  Titulo,
+  Infos,
+  ContainerTagTitle,
+  Rating,          // <-- importe aqui
+  ProductImage,
+} from './styles';
+import Tag from '../Tag';
 
 type Props = {
   titulo: string;
@@ -8,31 +17,41 @@ type Props = {
   image: string;
   ImageStar: string;
   descricao: string;
-  infos: string[]
-}
+  infos: string[];
+};
 
-const Product = ({ titulo, nota, image, ImageStar, descricao, infos }: Props) => {
+export default function Product({
+  titulo,
+  nota,
+  image,
+  ImageStar,
+  descricao,
+  infos,
+}: Props) {
   return (
     <ProductContainer>
       <Card>
-      <img  src={image} alt={''}/>
-      <Infos>
-        {infos.map(info => <Tag key={info}>{info}</Tag>)}
-      </Infos>
-      <div className="containerProduct">
-      <ContainerTagTitle>
-      <Titulo>{titulo}</Titulo>
-      <Tag >
-        {nota}
-        <img src={ImageStar} alt={''} />
-      </Tag>
-      </ContainerTagTitle>
+        <ProductImage src={image} alt={titulo} />
 
-      <Descricao>{descricao}</Descricao>
-        <Button>Saiba mais</Button>
-      </div>
+        <Infos>
+          {infos.map(info => (
+            <Tag key={info}>{info}</Tag>
+          ))}
+        </Infos>
+
+        <div className="containerProduct">
+          <ContainerTagTitle>
+            <Titulo>{titulo}</Titulo>
+            <Rating>
+              {nota}
+              <img src={ImageStar} alt="estrela" />
+            </Rating>
+          </ContainerTagTitle>
+
+          <Descricao>{descricao}</Descricao>
+          <Button>Saiba mais</Button>
+        </div>
       </Card>
     </ProductContainer>
   );
-}   
-export default Product;
+}

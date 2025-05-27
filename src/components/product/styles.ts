@@ -7,26 +7,32 @@ export const ProductContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-
-  .containerTagTitle {
-    display: flex
-;
-    justify-content: space-between;}
-
-
 `;
 
 export const ContainerTagTitle = styled.div`
-  color: ${Cores.vermelhoClaro};
-  font-size: 18px;
-  background-color: transparent;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;       /* separa do topo da imagem */
+  margin-bottom: 8px;     /* separa do texto */
+`;
+
+export const Rating = styled.div`
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent;
+  color: ${Cores.vermelhoClaro};
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 700;
 
   img {
-  margin-left: 8px;
-}
-`
+    margin-left: 8px;   /* separa a estrelinha do número */
+    width: 21px;         /* ajusta tamanho da estrela */
+    height: 21px;
+  }
+`;
 
 
 export const Card = styled.div`
