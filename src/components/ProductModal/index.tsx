@@ -1,12 +1,12 @@
 // src/components/ProductModal/index.tsx
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { MenuItemData } from '../../data/menuItems';
+import { ModalItemData } from '../../data/modalItem';
 import { useCart } from '../contexts/CartContext'; 
 import * as S from './styles';
 
 interface Props {
-  item: MenuItemData;
+  item: ModalItemData;
   onClose(): void;
 }
 
@@ -23,7 +23,6 @@ const ProductModal: React.FC<Props> = ({ item, onClose }) => {
         <img src={item.image} alt={item.title} />              {/* ← imagem grande */}
         <h2>{item.title}</h2>                                  {/* ← título */}
         <p>{item.description}</p>                              {/* ← descrição completa */}
-        <p className="serves">Serve: de 2 a 3 pessoas</p>       {/* ← subtítulo fixo */}
         <button
           onClick={() => {
             add(item, qty);

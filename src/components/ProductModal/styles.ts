@@ -47,11 +47,6 @@ export const Content = styled.div`
     margin: 0.5rem 0;
   }
 
-  .serves {
-    font-weight: bold;
-    margin-top: 1rem;
-  }
-
   button {
     background: ${Cores.bege};
     color: ${Cores.vermelhoClaro};
