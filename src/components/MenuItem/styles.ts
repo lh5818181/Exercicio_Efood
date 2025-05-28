@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import { Cores } from '../../styles/global';
 
 export const Card = styled.div<{ variant: 'even' | 'odd' }>`
-  width: 300px;
+  width: 320px;
+  heght: 338px
   border-radius: 8px;
-  background-color: ${({ variant }) =>
-    variant === 'odd' ? Cores.vermelhoClaro : Cores.bege};
-  color: ${({ variant }) =>
-    variant === 'odd' ? Cores.bege : Cores.vermelhoClaro};
+  background-color: ${Cores.vermelhoClaro};
+  color: ${Cores.branca};
   padding: 1rem;
   cursor: pointer;
   transition: transform 0.2s;
@@ -36,3 +35,4 @@ export const Snippet = styled.p`
   max-height: 3rem;
   overflow: hidden;
 `;
+

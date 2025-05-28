@@ -35,11 +35,11 @@ export const Card = styled.div`
   border: 1px solid ${Cores.vermelhoClaro};
   border-radius: 8px;
   width: 473px;
-  height: 398px;
+  height: 424px;
   position: relative;
 
   .containerProduct {
-    padding: 0 8px;
+    padding: 0 22px;
   }
 `;
 

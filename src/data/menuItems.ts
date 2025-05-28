@@ -1,6 +1,5 @@
 
 import pizzaImg from '../assets/pizza.png';
-import massaImg from '../assets/pizza.png';
 
 export interface MenuItemData {
   id: string;
@@ -15,16 +14,48 @@ export const menuItems: MenuItemData[] = [
     id: 'pizza-marguerita',
     title: 'Pizza Marguerita',
     description:
-      'Massa fina, molho de tomate, mussarela derretida, manjericão fresco e azeite.',
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
     price: 58.9,
     image: pizzaImg,
   },
   {
-    id: 'macarrao-alfredo',
-    title: 'Macarrão Alfredo',
+    id: 'pizza-marguerita',
+    title: 'Pizza Marguerita',
     description:
-      'Fettuccine ao molho cremoso, queijo parmesão e toque de noz-moscada.',
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
     price: 45.0,
-    image: massaImg,
+    image: pizzaImg,
+  },
+    {
+    id: 'pizza-marguerita',
+    title: 'Pizza Marguerita',
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 45.0,
+    image: pizzaImg,
+  },
+    {
+    id: 'pizza-marguerita',
+    title: 'Pizza Marguerita',
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 45.0,
+    image: pizzaImg,
+  },
+    {
+    id: 'pizza-marguerita',
+    title: 'Pizza Marguerita',
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 45.0,
+    image: pizzaImg,
+  },
+    {
+    id: 'pizza-marguerita',
+    title: 'Pizza Marguerita',
+    description:
+      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
+    price: 45.0,
+    image: pizzaImg,
   },
 ];
