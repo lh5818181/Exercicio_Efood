@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import { Cores } from '../../styles/global';
-
-// Ajuste: Button agora é um styled(Link) para ser usado como link estilizado
 import { Link } from 'react-router-dom';
 
 export const ProductContainer = styled.div`
@@ -15,7 +13,7 @@ export const ContainerTagTitle = styled.div`
   margin-bottom: 4px;
 `;
 
-export const Rating = styled.div`
+export const Rating = styled.span`
   display: inline-flex;
   align-items: center;
   background-color: transparent;
@@ -35,30 +33,27 @@ export const Rating = styled.div`
 export const Card = styled.div`
   background-color: ${Cores.branca};
   border: 1px solid ${Cores.vermelhoClaro};
-  color: ${Cores.vermelhoClaro};
   border-radius: 8px;
   width: 473px;
   height: 398px;
-  margin-bottom: 48px;
   position: relative;
 
   .containerProduct {
-    padding: 0px 8px;
+    padding: 0 8px;
   }
 `;
 
 export const Titulo = styled.h3`
   font-weight: bold;
   font-size: 16px;
-  display: block;
-  margin-top: 16px;
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
+  color: ${Cores.vermelhoClaro};
 `;
 
 export const Descricao = styled.p`
   font-size: 14px;
   line-height: 20px;
-  display: block;
+  color: ${Cores.vermelhoClaro};
 `;
 
 export const Button = styled(Link)`
@@ -68,8 +63,7 @@ export const Button = styled(Link)`
   width: 106px;
   padding: 4px 6px;
   text-align: center;
-  margin-top: 16px;
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;

@@ -1,12 +1,21 @@
-import Header from "../components/Header";
+import React from 'react';
+import Header from '../components/Header';
+import ProfileBanner from '../components/ProfileBanner';
+import MenuList from '../components/MenuList';
+import CartSidebar from '../components/CartSidebar';
+import imgFundoProfile from '../assets/imagem-fundo-perfil.png';
 
-
-const Home = () => {
+export default function Profile() {
   return (
-    <div>
+    <>
       <Header />
-      </div>
+      <ProfileBanner
+        bg={imgFundoProfile}
+        category="Italiana"
+        name="La Dolce Vita Trattoria"
+      />
+      <MenuList />
+      <CartSidebar />
+    </>
   );
 }
-
-export default Home;

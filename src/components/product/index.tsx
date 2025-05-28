@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ProductContainer,
   Card,
@@ -6,54 +7,52 @@ import {
   Titulo,
   Infos,
   ContainerTagTitle,
-  Rating,       
+  Rating,
   ProductImage,
 } from './styles';
 import Tag from '../Tag';
-import { Link } from 'react-router-dom'; // Importa o Link
+import { Link } from 'react-router-dom';
 
-type Props = {
+export interface ProductProps {
   titulo: string;
   nota: string;
   image: string;
-  ImageStar: string;
+  imageStar: string;
   descricao: string;
   infos: string[];
-};
+}
 
-export default function Product({
+const Product: React.FC<ProductProps> = ({
   titulo,
   nota,
   image,
-  ImageStar,
+  imageStar,
   descricao,
   infos,
-}: Props) {
-  return (
-    <ProductContainer>
-      <Card>
-        <ProductImage src={image} alt={titulo} />
+}) => (
+  <ProductContainer>
+    <Card>
+      <ProductImage src={image} alt={titulo} />
 
-        <Infos>
-          {infos.map(info => (
-            <Tag key={info}>{info}</Tag>
-          ))}
-        </Infos>
+      <Infos>
+        {infos.map(info => (
+          <Tag key={info}>{info}</Tag>
+        ))}
+      </Infos>
 
-        <div className="containerProduct">
-          <ContainerTagTitle>
-            <Titulo>{titulo}</Titulo>
-            <Rating>
-              {nota}
-              <img src={ImageStar} alt="estrela" />
-            </Rating>
-          </ContainerTagTitle>
-          <Descricao>{descricao}</Descricao>
-          <Link to={`/Profile`}>
-            <Button as="span">Saiba mais</Button>
-          </Link>
-        </div>
-      </Card>
-    </ProductContainer>
-  );
-}
+      <div className="containerProduct">
+        <ContainerTagTitle>
+          <Titulo>{titulo}</Titulo>
+          <Rating>
+            {nota}
+            <img src={imageStar} alt="estrela" />
+          </Rating>
+        </ContainerTagTitle>
+        <Descricao>{descricao}</Descricao>
+        <Button to="/profile">Saiba mais</Button>
+      </div>
+    </Card>
+  </ProductContainer>
+);
+
+export default Product;

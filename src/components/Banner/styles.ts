@@ -11,28 +11,14 @@ export const BannerContainer = styled.div`
   justify-content: center;
 `;
 
-export const Imagem = styled.div`
+export const Imagem = styled.div<{ bg: string }>`
   position: absolute;
-  width: 100%; 
-  height: 100%; 
+  inset: 0;
+  background-image: url(${props => props.bg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  top: 0;
-  left: 0;
   z-index: 1;
-`;
-
-export const Titulo = styled.h1`
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  width: 100%;
-  font-size: 36px;
-  font-weight: 900;
-  color: ${Cores.vermelhoClaro};
-  margin-top: 138px;
-  margin-bottom: 40px;
 `;
 
 export const LogoImagem = styled.img`
@@ -42,4 +28,15 @@ export const LogoImagem = styled.img`
   display: block;
   left: 50%;
   transform: translateX(-50%);
+`;
+
+export const Titulo = styled.h1`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 900;
+  color: ${Cores.vermelhoClaro};
+  margin-top: 138px;
+  margin-bottom: 40px;
 `;

@@ -1,12 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.section`
-padding: 32px 0;`
+  padding: 80px 170px;
+`;
 
-
-export const Listagem = styled.ul`
+export const Listagem = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px 80px;
   margin-top: 40px;
-`
+  justify-items: center;
+`;

@@ -1,16 +1,16 @@
-import Banner from "../components/Banner";
-import Footer from "../components/Footer";
-import ProductList from "../components/ProductList";
+import React from 'react';
+import Banner from '../components/Banner';
+import ProductList from '../components/ProductList';
+import Footer from '../components/Footer';
 
-
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <div>
+    <>
       <Banner />
-       <ProductList />
-       <Footer />
-      </div>
+      <ProductList />
+      <Footer />
+    </>
   );
-}
+};
 
 export default Home;

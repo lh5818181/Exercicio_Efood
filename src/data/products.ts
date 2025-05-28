@@ -1,6 +1,5 @@
-// src/data/products.ts
 import hiokiSushiImg from '../assets/Hioki Sushi.png';
-import LaDolceImg from  '../assets/macarrao-italiano.png'
+import LaDolceImg from '../assets/macarrao-italiano.png';
 import estrelaImg from '../assets/estrela.png';
 
 export interface ProductData {
@@ -31,7 +30,7 @@ export const products: ProductData[] = [
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     infos: ['Italiana'],
   },
-    {
+  {
     titulo: 'La Dolce Vita Trattoria',
     nota: '4.6',
     image: LaDolceImg,
@@ -40,7 +39,7 @@ export const products: ProductData[] = [
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     infos: ['Italiana'],
   },
-    {
+  {
     titulo: 'La Dolce Vita Trattoria',
     nota: '4.6',
     image: LaDolceImg,
@@ -49,7 +48,7 @@ export const products: ProductData[] = [
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     infos: ['Italiana'],
   },
-    {
+  {
     titulo: 'La Dolce Vita Trattoria',
     nota: '4.6',
     image: LaDolceImg,
@@ -58,7 +57,7 @@ export const products: ProductData[] = [
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
     infos: ['Italiana'],
   },
-    {
+  {
     titulo: 'La Dolce Vita Trattoria',
     nota: '4.6',
     image: LaDolceImg,
