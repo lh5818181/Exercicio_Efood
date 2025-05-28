@@ -1,4 +1,3 @@
-// src/components/ProductModal/styles.ts
 import styled from 'styled-components';
 import { Cores } from '../../styles/global';
 
@@ -16,11 +15,13 @@ export const Content = styled.div`
   background: ${Cores.vermelhoClaro};
   color: ${Cores.bege};
   padding: 2rem;
-  border-radius: 8px;
-  max-width: 600px;
+  max-width: 1024px;
   width: 90%;
   position: relative;
-  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  border-radius: 8px;
 
   .close {
     position: absolute;
@@ -31,20 +32,28 @@ export const Content = styled.div`
     font-size: 1.5rem;
     color: ${Cores.bege};
     cursor: pointer;
+    line-height: 1;
   }
 
   img {
     width: 100%;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    max-width: 320px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   h2 {
-    margin: 0 0 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   p {
     margin: 0.5rem 0;
+    line-height: 1.4;
+    font-size: 0.95rem;
   }
 
   button {
@@ -56,5 +65,10 @@ export const Content = styled.div`
     cursor: pointer;
     font-weight: bold;
     margin-top: 1rem;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
   }
 `;

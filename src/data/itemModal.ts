@@ -1,15 +1,14 @@
-
 import pizzaImg from '../assets/pizza.png';
 
 export interface ModalItemData {
   id: string;
   title: string;
-  description: string;
-  price: number;
   image: string;
+  price: number;
+  description: string;
 }
 
-export const modalItem: ModalItemData[] = [
+export const itemModal: ModalItemData[] = [
   {
     id: 'pizza-marguerita',
     title: 'Pizza Marguerita',
@@ -18,6 +17,4 @@ export const modalItem: ModalItemData[] = [
     price: 58.9,
     image: pizzaImg,
   },
-
-    
 ];
