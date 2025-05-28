@@ -6,6 +6,7 @@ padding: 32px 0;`
 
 export const Listagem = styled.ul`
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 24px;
   margin-top: 40px;
 `

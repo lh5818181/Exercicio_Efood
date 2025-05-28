@@ -6,10 +6,11 @@ import {
   Titulo,
   Infos,
   ContainerTagTitle,
-  Rating,          // <-- importe aqui
+  Rating,       
   ProductImage,
 } from './styles';
 import Tag from '../Tag';
+import { Link } from 'react-router-dom'; // Importa o Link
 
 type Props = {
   titulo: string;
@@ -47,9 +48,10 @@ export default function Product({
               <img src={ImageStar} alt="estrela" />
             </Rating>
           </ContainerTagTitle>
-
           <Descricao>{descricao}</Descricao>
-          <Button>Saiba mais</Button>
+          <Link to={`/Profile`}>
+            <Button as="span">Saiba mais</Button>
+          </Link>
         </div>
       </Card>
     </ProductContainer>
