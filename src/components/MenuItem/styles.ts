@@ -30,9 +30,24 @@ export const Title = styled.h3`
 export const Snippet = styled.p`
   font-size: 0.9rem;
   line-height: 1.2;
-  margin-bottom: 0.5rem;
   opacity: 0.85;
   max-height: 3rem;
   overflow: hidden;
 `;
 
+export const AddButton = styled.button`
+  margin-top: auto;            
+  background-color: ${Cores.bege};
+  color: ${Cores.vermelhoClaro};
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
