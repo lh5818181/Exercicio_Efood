@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
+import Checkout from '../features/checkout/Checkout';
 
 export default function AppRoutes() {
   return (
@@ -8,7 +9,7 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
-        {/* future: /menu, /cart, etc */}
+        <Route path="Checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

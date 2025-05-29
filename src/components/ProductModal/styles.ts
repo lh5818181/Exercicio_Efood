@@ -12,63 +12,70 @@ export const Overlay = styled.div`
 `;
 
 export const Content = styled.div`
-  background: ${Cores.vermelhoClaro};
-  color: ${Cores.bege};
-  padding: 2rem;
-  max-width: 1024px;
-  width: 90%;
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  border-radius: 8px;
-
-  .close {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: ${Cores.bege};
-    cursor: pointer;
-    line-height: 1;
-  }
-
-  img {
-    width: 100%;
-    max-width: 320px;
-    height: auto;
-    object-fit: cover;
+    background: ${Cores.vermelhoClaro};
+    color: ${Cores.branca};
+    width: 1024px;
+    display: flex;
+    gap: 2rem;
     border-radius: 8px;
+    position: relative;
+    padding: 2rem;
+    align-items: center;
+    justify-items: center;
+    flex-direction: row;`
+
+export const Left = styled.div`
+  img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
   }
+`;
+
+export const Right = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
   h2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
 
   p {
-    margin: 0.5rem 0;
+    flex-grow: 1;
     line-height: 1.4;
-    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
   }
+`;
 
-  button {
-    background: ${Cores.bege};
-    color: ${Cores.vermelhoClaro};
+export const Price = styled.span`
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
+
+export const AddModalButton = styled.button`
+  background: ${Cores.bege};
+  color: ${Cores.vermelhoClaro};
+    padding: 4px 8px;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: 1rem;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s;
 
-    &:hover {
-      opacity: 0.85;
-    }
+  &:hover {
+    opacity: 0.85;
   }
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: ${Cores.bege};
+  cursor: pointer;
 `;

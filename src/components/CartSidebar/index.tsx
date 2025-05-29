@@ -1,34 +1,48 @@
-// src/components/CartSidebar/index.tsx
-import React from 'react';
-import { useCart } from '../contexts/CartContext';
-import * as S from './styles';
+import React from 'react'
+import { useCart } from '../contexts/CartContext'
+import * as S from './styles'
+import { Link } from 'react-router-dom'
 
-const CartSidebar: React.FC = () => {
-  const { items, total, remove, isOpen } = useCart();
-  if (!isOpen) return null;                                   // ← oculta se fechado
+export default function CartSidebar({ onClose }: { onClose(): void }) {
+  const { items, total, remove } = useCart()
 
   return (
-    <S.Panel>
-      <h2>Carrinho</h2>
-      <S.Items>
-        {items.map((it) => (
-          <S.Item key={it.id}>
-            <img src={it.image} alt={it.title} />             {/* ← imagem */}
-            <div>
-              <strong>{it.title}</strong>                     {/* ← título */}
-              <span>R${(it.price * it.quantity).toFixed(2)}</span>  {/* ← preço */}
-            </div>
-            <button onClick={() => remove(it.id)}>🗑️</button> {/* ← ícone excluir */}
-          </S.Item>
-        ))}
-      </S.Items>
-      <S.Total>
-        <span>Valor total</span>
-        <strong>R${total.toFixed(2)}</strong>
-      </S.Total>
-      <button>Continuar com a entrega</button>
-    </S.Panel>
-  );
-};
+    <S.Overlay onClick={onClose}>
+      <S.Sidebar onClick={(e) => e.stopPropagation()}>
+        <button className="close" onClick={onClose}>
+          ×
+        </button>
 
-export default CartSidebar;
+        <h2>Seu Carrinho</h2>
+
+        <S.ItemList>
+          {items.length > 0 ? (
+            items.map((item) => (
+              <S.Item key={item.id}>
+                <img src={item.image} alt={item.title} />
+                <div>
+                  <span>{item.title}</span>
+                  <span>R$ {item.price.toFixed(2)}</span>
+                </div>
+                <button onClick={() => remove(item.id)}>🗑️</button>
+              </S.Item>
+            ))
+          ) : (
+            <S.EmptyMessage>Seu carrinho está vazio.</S.EmptyMessage>
+          )}
+        </S.ItemList>
+
+        <S.Total>
+          <span>Total</span>
+          <span>R$ {total.toFixed(2)}</span>
+        </S.Total>
+
+        {items.length > 0 && (
+          <S.CheckoutButton as={Link} to="/checkout" onClick={onClose}>
+            Continuar com a entrega
+          </S.CheckoutButton>
+        )}
+      </S.Sidebar>
+    </S.Overlay>
+  )
+}

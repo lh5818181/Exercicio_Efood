@@ -6,8 +6,7 @@ export const HeaderContainer = styled.header`
 position: relative;
     width: 100%;
     height: 186px;
-    display: flex
-;
+    display: flex;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -38,6 +37,7 @@ export const Title = styled.h2`
   position: relative;
   z-index: 2;
   color: ${Cores.vermelhoClaro};
+    font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 900;
   white-space: nowrap;
@@ -47,4 +47,16 @@ export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+`;
+
+export const CartButton = styled.button`
+  background: transparent;
+  border: none;
+  color: ${Cores.vermelhoClaro};
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  position: relative;
+  z-index: 2;
 `;
