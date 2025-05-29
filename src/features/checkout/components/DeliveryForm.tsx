@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { DeliveryData } from '../types'
 import * as S from '../styles'
 
 interface Props {
-  onNext: (data: DeliveryData) => void
+  onNext(data: DeliveryData): void
+  onBack(): void
 }
 
-const DeliveryForm = ({ onNext }: Props) => {
+const DeliveryForm: React.FC<Props> = ({ onNext, onBack }) => {
   const [form, setForm] = useState<DeliveryData>({
     name: '',
     address: '',
@@ -18,7 +19,7 @@ const DeliveryForm = ({ onNext }: Props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setForm({ ...form, [name]: value })
+    setForm(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -30,31 +31,38 @@ const DeliveryForm = ({ onNext }: Props) => {
     <S.Form onSubmit={handleSubmit}>
       <S.Title>Entrega</S.Title>
 
-      {['name', 'address', 'city', 'cep', 'number', 'complement'].map((field) => (
-        <div key={field}>
-          <S.Label>
-            {field === 'name'
-              ? 'Quem irá receber'
-              : field === 'cep'
-              ? 'CEP'
-              : field === 'number'
-              ? 'Número'
-              : field === 'complement'
-              ? 'Complemento (opcional)'
-              : field.charAt(0).toUpperCase() + field.slice(1)}
-
-            <S.Input
-              type="text"
-              name={field}
-              value={(form as any)[field]}
-              onChange={handleChange}
-              required={field !== 'complement'}
-            />
-          </S.Label>
-        </div>
+      {/* campos... */}
+      {/* repetindo sua lógica de Field/Label/Input */}
+      {(
+        [
+          ['name', 'Quem irá receber'],
+          ['address', 'Endereço'],
+          ['city', 'Cidade'],
+          ['cep', 'CEP'],
+          ['number', 'Número'],
+          ['complement', 'Complemento (opcional)'],
+        ] as [keyof DeliveryData, string][]
+      ).map(([field, label]) => (
+        <S.Field key={field}>
+          <S.Label>{label}</S.Label>
+          <S.Input
+            type="text"
+            name={field}
+            value={form[field] || ''}
+            onChange={handleChange}
+            required={field !== 'complement'}
+          />
+        </S.Field>
       ))}
 
-      <S.Button type="submit">Continuar com o pagamento</S.Button>
+      <S.Flex>
+        <S.Button type="button" onClick={onBack}>
+          Voltar
+        </S.Button>
+        <S.Button full type="submit">
+          Continuar
+        </S.Button>
+      </S.Flex>
     </S.Form>
   )
 }

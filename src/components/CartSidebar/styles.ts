@@ -11,8 +11,8 @@ export const Overlay = styled.div`
 `
 
 export const Sidebar = styled.div`
-  width: 350px;
-  height: 74%;
+  width: 454px;
+  height: 94% ;
   background: ${Cores.vermelhoClaro};
   color: ${Cores.bege};
   padding: 1.5rem;
@@ -66,7 +66,7 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255,255,255,0.05);
   padding: 0.5rem;
   border-radius: 6px;
 

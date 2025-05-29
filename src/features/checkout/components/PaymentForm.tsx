@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useCheckout } from '../CheckoutContext'
 import { PaymentData } from '../types'
 import * as S from '../styles'
 
 interface Props {
-  onNext: (data: PaymentData) => void
-  onBack: () => void
+  onNext(data: PaymentData): void
+  onBack(): void
 }
 
-export default function PaymentForm({ onNext, onBack }: Props) {
+const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
   const [form, setForm] = useState<PaymentData>({
     nameOnCard: '',
     cardNumber: '',
@@ -15,6 +17,12 @@ export default function PaymentForm({ onNext, onBack }: Props) {
     expiryYear: '',
     cvv: '',
   })
+  const { deliveryData } = useCheckout()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!deliveryData) navigate('../delivery')
+  }, [deliveryData, navigate])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -30,9 +38,8 @@ export default function PaymentForm({ onNext, onBack }: Props) {
     <S.Form onSubmit={handleSubmit}>
       <S.Title>Pagamento</S.Title>
 
-      {/* Nome impresso no cartão */}
-      <S.Label>
-        Nome no cartão
+      <S.Field>
+        <S.Label>Nome no cartão</S.Label>
         <S.Input
           type="text"
           name="nameOnCard"
@@ -40,11 +47,10 @@ export default function PaymentForm({ onNext, onBack }: Props) {
           onChange={handleChange}
           required
         />
-      </S.Label>
+      </S.Field>
 
-      {/* Número do cartão */}
-      <S.Label>
-        Número do cartão
+      <S.Field>
+        <S.Label>Número do cartão</S.Label>
         <S.Input
           type="text"
           name="cardNumber"
@@ -52,42 +58,33 @@ export default function PaymentForm({ onNext, onBack }: Props) {
           onChange={handleChange}
           required
         />
-      </S.Label>
+      </S.Field>
 
-      {/* Validade: mês e ano lado a lado */}
       <S.Flex>
-        <div style={{ flex: 1 }}>
-          <S.Label>
-            Mês de validade (MM)
-            <S.Input
-              type="text"
-              name="expiryMonth"
-              placeholder="MM"
-              value={form.expiryMonth}
-              onChange={handleChange}
-              required
-            />
-          </S.Label>
-        </div>
-
-        <div style={{ flex: 1 }}>
-          <S.Label>
-            Ano de validade (AA)
-            <S.Input
-              type="text"
-              name="expiryYear"
-              placeholder="AA"
-              value={form.expiryYear}
-              onChange={handleChange}
-              required
-            />
-          </S.Label>
-        </div>
+        <S.Field flex={1}>
+          <S.Label>MM</S.Label>
+          <S.Input
+            type="text"
+            name="expiryMonth"
+            value={form.expiryMonth}
+            onChange={handleChange}
+            required
+          />
+        </S.Field>
+        <S.Field flex={1}>
+          <S.Label>AA</S.Label>
+          <S.Input
+            type="text"
+            name="expiryYear"
+            value={form.expiryYear}
+            onChange={handleChange}
+            required
+          />
+        </S.Field>
       </S.Flex>
 
-      {/* CVV */}
-      <S.Label>
-        CVV
+      <S.Field>
+        <S.Label>CVV</S.Label>
         <S.Input
           type="text"
           name="cvv"
@@ -95,17 +92,18 @@ export default function PaymentForm({ onNext, onBack }: Props) {
           onChange={handleChange}
           required
         />
-      </S.Label>
+      </S.Field>
 
-      {/* Botões de navegação */}
       <S.Flex>
         <S.Button type="button" onClick={onBack}>
           Voltar
         </S.Button>
-        <S.Button type="submit">
-          Finalizar pedido
+        <S.Button full type="submit">
+          Finalizar
         </S.Button>
       </S.Flex>
     </S.Form>
   )
 }
+
+export default PaymentForm
