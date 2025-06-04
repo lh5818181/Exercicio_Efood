@@ -30,7 +30,7 @@ const Product: React.FC<ProductProps> = ({
   descricao,
   infos,
 }) => (
-  <ProductContainer>
+
     <Card>
       <ProductImage src={image} alt={titulo} />
 
@@ -52,7 +52,7 @@ const Product: React.FC<ProductProps> = ({
         <Button to="/profile">Saiba mais</Button>
       </div>
     </Card>
-  </ProductContainer>
+  
 );
 
 export default Product;

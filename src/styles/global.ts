@@ -10,13 +10,14 @@ export const Cores = {
 
 export default createGlobalStyle`
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
+  
+body {
     font-family: 'Roboto', sans-serif;
     background: ${Cores.bege};
   }
 
       .container {
-      max-width: 1024px;
+      max-width: 1366px;
       margin: 0 auto;
       width: 100%;
   }
