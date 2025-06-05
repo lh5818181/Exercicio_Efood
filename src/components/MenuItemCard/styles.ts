@@ -4,11 +4,10 @@ import { Cores } from '../../styles/global';
 export const Card = styled.div<{ variant: 'even' | 'odd' }>`
   width: 320px;
   height: 380px;
-  border-radius: 8px;
   background-color: ${Cores.vermelhoClaro};
   color: ${Cores.branca};
   font-family: 'Roboto', sans-serif;
-  padding: 1rem;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
@@ -54,14 +53,14 @@ export const AddButton = styled.button`
   background-color: ${Cores.bege};
   color: ${Cores.vermelhoClaro};
   border: none;
-  border-radius: 4px;
-  padding: 0.5rem;
+  padding: 4px;
     font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
   transition: opacity 0.2s;
-  width: 100%;
+  width: 304px;
+    height: 24px;
 
   &:hover {
     opacity: 0.8;

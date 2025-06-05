@@ -8,7 +8,7 @@ export default function Header() {
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
-    <S.HeaderContainer>
+    <S.HeaderContainer className='container'>
       <S.Background bg={heroImg} />
 
       <S.Title>Restaurantes</S.Title>

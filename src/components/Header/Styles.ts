@@ -18,6 +18,8 @@ position: relative;
 
 export const Background = styled.div<{ bg: string }>`
   position: absolute;
+  width: 1342px;
+  height: 186px;
   inset: 0;
   background-image: url(${props => props.bg});
   background-size: cover;
