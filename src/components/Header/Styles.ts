@@ -7,9 +7,7 @@ position: relative;
     width: 100%;
     height: 186px;
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     justify-content: space-around;
     gap: 2rem;
     text-align: center;
@@ -32,23 +30,24 @@ export const Logo = styled.img`
   z-index: 2;
   width: 120px;
   height: auto;
-  left: 50%;
 `;
 
 export const Title = styled.h2`
-  position: relative;
-  z-index: 2;
-  color: ${Cores.vermelhoClaro};
-    font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  font-weight: 900;
-  white-space: nowrap;
+    color: ${Cores.vermelhoClaro};
+    position: relative;
+    margin-left: 171px;
+    z-index: 2;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
 `;
 
 export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+    margin-right: 193px;
+    margin-left: 264px;
 `;
 
 export const CartButton = styled.button`
@@ -61,4 +60,5 @@ export const CartButton = styled.button`
   font-weight: 900;
   position: relative;
   z-index: 2;
+  margin-right: 171px;
 `;

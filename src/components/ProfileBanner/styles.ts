@@ -16,13 +16,24 @@ export const Banner = styled.section<{ bg: string }>`
 export const Category = styled.span`
     font-size: 32px;
     font-weight: 100;
-    padding-top: 10px;
-    padding-bottom: 140px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 25px;
     margin-left: 170px;
+    margin-bottom: 156px;
+    font-family: Roboto;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+}
 `;
 
 export const Name = styled.h1`
-  font-size: 32px;
-  font-weight: 900;
-  margin-left: 170px;
+    font-size: 32px;
+    font-weight: 900;
+    margin-left: 170px;
+    margin-bottom: 32px;
+    font-family: Roboto;
+    line-height: 100%;
+    letter-spacing: 0%;
+
 `;
