@@ -3,22 +3,23 @@ import { Cores } from '../../styles/global';
 import { Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
-position: relative;
-    width: 100%;
-    height: 186px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 2rem;
-    text-align: center;
-    flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 186px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+  flex-direction: row;
 `;
+
 
 export const Background = styled.div<{ bg: string }>`
   position: absolute;
-  width: 1342px;
+  top: 0;
+  width: 100vw;
   height: 186px;
-  inset: 0;
   background-image: url(${props => props.bg});
   background-size: cover;
   background-position: center;

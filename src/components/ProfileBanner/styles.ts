@@ -11,7 +11,15 @@ export const Banner = styled.section<{ bg: string }>`
   flex-direction: column;
   justify-content: flex-end;
   color: ${Cores.branca};
+
 `;
+
+export const containerProfile = styled.div`
+    max-width: 1366px;
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;`
 
 export const Category = styled.span`
     font-size: 32px;

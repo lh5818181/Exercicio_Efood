@@ -10,8 +10,10 @@ interface BannerProps {
 const ProfileBanner: React.FC<BannerProps> = ({ bg, category, name }) => {
   return (
     <S.Banner bg={bg}>
+      <S.containerProfile>
       <S.Category>{category}</S.Category>
       <S.Name>{name}</S.Name>
+      </S.containerProfile>
     </S.Banner>
   );
 };
