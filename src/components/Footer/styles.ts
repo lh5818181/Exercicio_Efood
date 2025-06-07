@@ -20,6 +20,7 @@ export const FooterImagem = styled.div<{ bg: string }>`
   background-size: cover;
   background-position: center;
   z-index: 1;
+  widht: 100%;
 `;
 
 export const LogoImagemFooter = styled.img`
