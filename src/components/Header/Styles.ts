@@ -3,26 +3,31 @@ import { Cores } from '../../styles/global';
 import { Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
-  position: relative;
-  width: 100%;
+  width: 100%; 
+  min-width: 100%;
   height: 186px;
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 2rem;
   text-align: center;
   flex-direction: row;
+  overflow: hidden;
 `;
 
+export const HeaderContent = styled.div`
+    max-width: 1366px;
+    display: flex;
+    align-items: center;`
 
 export const Background = styled.div<{ bg: string }>`
+  width: 100%; 
+  min-width: 100%; 
+  left: 0;
+  height: 186px;
   position: absolute;
   top: 0;
-  width: 100vw;
-  height: 186px;
-  background-image: url(${props => props.bg});
-  background-size: cover;
-  background-position: center;
+  background: ${({ bg }) => `url(${bg}) center/cover no-repeat`};
   z-index: 1;
 `;
 
@@ -34,21 +39,21 @@ export const Logo = styled.img`
 `;
 
 export const Title = styled.h2`
-    color: ${Cores.vermelhoClaro};
-    position: relative;
-    margin-left: 171px;
-    z-index: 2;
-    font-family: Roboto, sans-serif;
-    font-size: 18px;
-    font-weight: 900;
+  color: ${Cores.vermelhoClaro};
+  position: relative;
+  margin-left: 170px;
+  z-index: 2;
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 900;
 `;
 
 export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-    margin-right: 193px;
-    margin-left: 264px;
+  margin-right: 193px;
+  margin-left: 330px;
 `;
 
 export const CartButton = styled.button`

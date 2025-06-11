@@ -10,6 +10,7 @@ export default function Header() {
   return (
     <S.HeaderContainer className='container'>
       <S.Background bg={heroImg} />
+      <S.HeaderContent>
 
       <S.Title>Restaurantes</S.Title>
 
@@ -20,6 +21,7 @@ export default function Header() {
       <S.CartButton onClick={toggleSidebar}>
         {cartCount} produto{cartCount !== 1 && 's'} no carrinho
       </S.CartButton>
+      </S.HeaderContent>
     </S.HeaderContainer>
   );
 }
