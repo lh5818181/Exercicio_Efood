@@ -17,7 +17,10 @@ export const HeaderContainer = styled.header`
 
 export const HeaderContent = styled.div`
     max-width: 1366px;
+    margin: 0px auto;
+    width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;`
 
 export const Background = styled.div<{ bg: string }>`
