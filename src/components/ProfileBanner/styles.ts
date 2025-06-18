@@ -12,6 +12,23 @@ export const Banner = styled.section<{ bg: string }>`
   justify-content: flex-end;
   color: ${Cores.branca};
 
+&::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+position: relative;
+
+> * {
+    position: relative;
+    z-index: 1;
+}
+
 `;
 
 export const containerProfile = styled.div`
