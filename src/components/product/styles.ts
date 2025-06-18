@@ -83,6 +83,7 @@ export const Button = styled(Link)`
 export const ProductImage = styled.img`
   width: 472px;
   height: 217px;
+  object-fit: cover;
 `;
 
 export const Infos = styled.div`

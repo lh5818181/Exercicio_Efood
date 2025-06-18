@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import {
-  ProductContainer,
   Card,
   Descricao,
   Button,
@@ -9,20 +9,21 @@ import {
   ContainerTagTitle,
   Rating,
   ProductImage,
-} from './styles';
-import Tag from '../Tag';
-import { Link } from 'react-router-dom';
+} from './styles'
+import Tag from '../Tag'
 
 export interface ProductProps {
-  titulo: string;
-  nota: string;
-  image: string;
-  imageStar: string;
-  descricao: string;
-  infos: string[];
+  id: number             // novo
+  titulo: string
+  nota: string
+  image: string
+  imageStar: string
+  descricao: string
+  infos: string[]
 }
 
 const Product: React.FC<ProductProps> = ({
+  id,
   titulo,
   nota,
   image,
@@ -30,29 +31,35 @@ const Product: React.FC<ProductProps> = ({
   descricao,
   infos,
 }) => (
+  <Card>
+    <ProductImage src={image} alt={titulo} />
 
-    <Card>
-      <ProductImage src={image} alt={titulo} />
+    <Infos>
+      {infos.map(info => (
+        <Tag key={info}>{info}</Tag>
+      ))}
+    </Infos>
 
-      <Infos>
-        {infos.map(info => (
-          <Tag key={info}>{info}</Tag>
-        ))}
-      </Infos>
+    <div className="containerProduct">
+      <ContainerTagTitle>
+        <Titulo>{titulo}</Titulo>
+        <Rating>
+          {nota}
+          <img src={imageStar} alt="estrela" />
+        </Rating>
+      </ContainerTagTitle>
 
-      <div className="containerProduct">
-        <ContainerTagTitle>
-          <Titulo>{titulo}</Titulo>
-          <Rating>
-            {nota}
-            <img src={imageStar} alt="estrela" />
-          </Rating>
-        </ContainerTagTitle>
-        <Descricao>{descricao}</Descricao>
-        <Button to="/profile">Saiba mais</Button>
-      </div>
-    </Card>
-  
-);
+      <Descricao>
+        {descricao.length > 190
+          ? descricao.slice(0, 190) + '...'
+          : descricao}
+      </Descricao>
 
-export default Product;
+      <Button as={Link} to={`/profile/${id}`}>
+        Saiba mais
+      </Button>
+    </div>
+  </Card>
+)
+
+export default Product

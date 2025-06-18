@@ -10,7 +10,7 @@ export default function AppRoutes() {
     <CheckoutProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:id" element={<Profile />} />
         <Route path="/checkout/*" element={<CheckoutRoutes />} />
       </Routes>
       </CheckoutProvider>
