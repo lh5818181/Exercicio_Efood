@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MenuItemData } from '../../data/menuItems'
 import * as S from './styles'
-import { useCart } from '../contexts/CartContext'
+import ProductModal from '../ProductModal'
 
 interface MenuItemCardProps {
   item: MenuItemData
@@ -10,7 +10,7 @@ interface MenuItemCardProps {
 }
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, variant, onClick }) => {
-  const { add } = useCart()
+  const [modalOpen, setModalOpen] = useState(false)
 
   return (
     <S.Card variant={variant} onClick={onClick}>
@@ -24,11 +24,17 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, variant, onClick }) =
       <S.AddButton
         onClick={e => {
           e.stopPropagation()
-          add(item)
+          setModalOpen(true)
         }}
       >
         Adicionar ao carrinho
       </S.AddButton>
+      {modalOpen && (
+        <ProductModal
+          item={item}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
     </S.Card>
   )
 }

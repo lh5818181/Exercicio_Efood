@@ -12,17 +12,18 @@ export const Overlay = styled.div`
 `;
 
 export const Content = styled.div`
-    background: ${Cores.vermelhoClaro};
-    color: ${Cores.branca};
-    width: 1024px;
-    display: flex;
-    gap: 2rem;
-    border-radius: 8px;
-    position: relative;
-    padding: 2rem;
-    align-items: center;
-    justify-items: center;
-    flex-direction: row;`
+  background: ${Cores.vermelhoClaro};
+  color: ${Cores.branca};
+  width: 1024px;
+  display: flex;
+  gap: 2rem;
+  border-radius: 8px;
+  position: relative;
+  padding: 2rem;
+  flex-direction: row;
+  align-items: flex-start;
+`
+    
 
 export const Left = styled.div`
   img {
@@ -45,7 +46,7 @@ export const Right = styled.div`
   p {
     flex-grow: 1;
     line-height: 1.4;
-    margin-bottom: 1.5rem;
+    margin-bottom: 16px;
   }
 `;
 
