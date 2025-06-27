@@ -1,105 +1,58 @@
-import React, { useState, useEffect } from 'react'
-import { useCart } from '../contexts/CartContext'
-import { useCheckout } from '../../features/checkout/CheckoutContext'
+// src/components/CartSidebar/index.tsx
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../store'
+import { removeItem, closeCart } from '../../store/reducers/cart'
 import * as S from './styles'
-import DeliveryForm from '../../features/checkout/components/DeliveryForm'
-import PaymentForm from '../../features/checkout/components/PaymentForm'
-import ConfirmationScreen from '../../features/checkout/components/ConfirmationScreen'
+import lixeira from '../../assets/lixeira.png'
 
-type Step = 'cart' | 'delivery' | 'payment' | 'confirmation'
+export default function CartSidebar() {
+  const dispatch = useDispatch()
+  const { items, isOpen } = useSelector((state: RootState) => state.cart)
 
-export default function CartSidebar({ onClose }: { onClose(): void }) {
-  const { items, total, remove } = useCart()
-  const {
-    deliveryData, paymentData,
-    setDeliveryData, setPaymentData, reset: resetCheckout
-  } = useCheckout()
+  // Se o sidebar estiver fechado, não renderiza nada
+  if (!isOpen) return null
 
-  const [step, setStep] = useState<Step>('cart')
-
-  // Se carrinho esvaziar, volta ao passo 'cart'
-  useEffect(() => {
-    if (items.length === 0) setStep('cart')
-  }, [items])
-
-  // Ao concluir
-  const handleDone = () => {
-    resetCheckout()
-    onClose()
-  }
+  // Soma total: price * quantity
+  const total = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  )
 
   return (
-    <S.Overlay onClick={onClose}>
+    <S.Overlay onClick={() => dispatch(closeCart())}>
       <S.Sidebar onClick={e => e.stopPropagation()}>
-        <button
-          className="close"
-          onClick={() => { onClose(); setStep('cart') }}
-        >
-          ×
-        </button>
+        <S.ItemList>
+          {items.length > 0 ? (
+            items.map(item => (
+              <S.Item key={item.id}>
+                <img src={item.image} alt={item.title} />
+                <div>
+                  <span>{item.title}</span>
+                  <span>
+                    R$ {(item.price * item.quantity).toFixed(2)}{' '}
+                    ({item.quantity}x)
+                  </span>
+                </div>
+                <button onClick={() => dispatch(removeItem(item.id))}>
+                  <img className='lixeira' src={lixeira} alt="lixeira" />
+                </button>
+              </S.Item>
+            ))
+          ) : (
+            <S.EmptyMessage>Seu carrinho está vazio.</S.EmptyMessage>
+          )}
+        </S.ItemList>
 
-        {step === 'cart' && (
-          <>
-            <h2>Seu Carrinho</h2>
+        <S.Total>
+          <span>Total</span>
+          <span>R$ {total.toFixed(2)}</span>
+        </S.Total>
 
-            <S.ItemList>
-              {items.length > 0 ? (
-                items.map(item => (
-                  <S.Item key={item.id}>
-                    <img src={item.image} alt={item.title} />
-                    <div>
-                      <span>{item.title}</span>
-                      <span>R$ {item.price.toFixed(2)}</span>
-                    </div>
-                    <button onClick={() => remove(item.id)}>🗑️</button>
-                  </S.Item>
-                ))
-              ) : (
-                <S.EmptyMessage>Carrinho vazio.</S.EmptyMessage>
-              )}
-            </S.ItemList>
-
-            <S.Total>
-              <span>Total</span>
-              <span>R$ {total.toFixed(2)}</span>
-            </S.Total>
-
-            {items.length > 0 && (
-              <S.CheckoutButton onClick={() => setStep('delivery')}>
-                Continuar com a entrega
-              </S.CheckoutButton>
-            )}
-          </>
-        )}
-
-        {step === 'delivery' && (
-          <>
-            <DeliveryForm
-              onNext={data => {
-                setDeliveryData(data)
-                setStep('payment')
-              }}
-              onBack={() => setStep('cart')}
-            />
-          </>
-        )}
-
-        {step === 'payment' && (
-          <>
-            <PaymentForm
-              onNext={data => {
-                setPaymentData(data)
-                setStep('confirmation')
-              }}
-              onBack={() => setStep('delivery')}
-            />
-          </>
-        )}
-
-        {step === 'confirmation' && (
-          <>
-            <ConfirmationScreen onReset={handleDone} />
-          </>
+        {items.length > 0 && (
+          <S.CheckoutButton onClick={() => {/* navegar para /checkout se quiser */}}>
+            Continuar com a entrega
+          </S.CheckoutButton>
         )}
       </S.Sidebar>
     </S.Overlay>

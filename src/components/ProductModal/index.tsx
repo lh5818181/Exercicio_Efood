@@ -1,7 +1,9 @@
+
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { ModalItemData } from '../../data/itemModal'
-import { useCart } from '../contexts/CartContext'
+import { useDispatch } from 'react-redux'
+import { addItem, openCart } from '../../store/reducers/cart'
 import * as S from './styles'
 import { CloseButton } from './styles'
 
@@ -11,10 +13,18 @@ interface Props {
 }
 
 export default function ProductModal({ item, onClose }: Props) {
-  const { add } = useCart()
+  const dispatch = useDispatch()
 
   const handleAdd = () => {
-    add(item, 1)
+    // Despacha para adicionar ao carrinho e abrir o sidebar
+    dispatch(addItem({
+      id: item.id.toString(),       // converte para string se necessário
+      title: item.title,
+      description: item.description,
+      price: item.price,
+      image: item.image,
+    }))
+    dispatch(openCart())
     onClose()
   }
 

@@ -66,16 +66,21 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  background-color: rgba(255,255,255,0.05);
+  background-color: ${Cores.bege};
   padding: 0.5rem;
-  border-radius: 6px;
+  align-items: flex-end;
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
-    border-radius: 6px;
     margin-right: 0.75rem;
+  }
+
+  .lixeira {
+      width: 16px;
+      height: 16px;
+      object-fit: cover;
   }
 
   div {
@@ -83,15 +88,21 @@ export const Item = styled.div`
     display: flex;
     flex-direction: column;
     gap: 4px;
+    margin-bottom: 22px;
 
     span:first-child {
-      font-size: 0.95rem;
-      font-weight: 600;
-      line-height: 1.2;
+      font-size:  18px;
+      font-weight: 900;
+      line-height: 100%;
+      color: ${Cores.vermelhoClaro};
+      margin-bottom: 16px;
     }
 
     span:last-child {
-      font-size: 0.85rem;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 22px;
+      color: ${Cores.vermelhoClaro};
     }
   }
 

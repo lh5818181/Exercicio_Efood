@@ -21,7 +21,8 @@ export const HeaderContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;`
+    align-items: center;
+    justify-content: space-between;`
 
 export const Background = styled.div<{ bg: string }>`
   width: 100%; 
@@ -39,6 +40,7 @@ export const Logo = styled.img`
   z-index: 2;
   width: 120px;
   height: auto;
+      margin-left: 72px;
 `;
 
 export const Title = styled.h2`

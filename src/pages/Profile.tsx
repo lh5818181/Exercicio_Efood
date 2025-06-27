@@ -1,3 +1,5 @@
+// src/pages/Profile.tsx
+
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -9,8 +11,6 @@ import Footer from '../components/Footer'
 
 import imgFallback from '../assets/imagem-fundo-perfil.png'
 
-
-import { useCart } from '../components/contexts/CartContext'
 import { Restaurante } from '../data/types'
 
 export default function Profile() {
@@ -18,8 +18,6 @@ export default function Profile() {
   const [restaurante, setRestaurante] = useState<Restaurante | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-
-  const { isOpen, toggleSidebar } = useCart()
 
   useEffect(() => {
     if (!id) return
@@ -57,7 +55,7 @@ export default function Profile() {
         <CardapioList items={restaurante.cardapio} />
       </main>
 
-      {isOpen && <CartSidebar onClose={toggleSidebar} />}
+      <CartSidebar />
 
       <Footer />
     </>
