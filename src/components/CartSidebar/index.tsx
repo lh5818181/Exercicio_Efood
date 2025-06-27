@@ -45,7 +45,7 @@ export default function CartSidebar() {
         </S.ItemList>
 
         <S.Total>
-          <span>Total</span>
+          <span>Valor total</span>
           <span>R$ {total.toFixed(2)}</span>
         </S.Total>
 

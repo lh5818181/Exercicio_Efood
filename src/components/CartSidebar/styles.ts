@@ -11,32 +11,18 @@ export const Overlay = styled.div`
 `
 
 export const Sidebar = styled.div`
-  width: 454px;
-  height: 94% ;
+  width: 360px;
+  height: 100% ;
+  padding: 40px 8px 0px 8px;
   background: ${Cores.vermelhoClaro};
   color: ${Cores.bege};
-  padding: 1.5rem;
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
-  border-radius: 8px 0 0 8px;
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
 
-  .close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: transparent;
-    border: none;
-    font-size: 1.8rem;
-    color: ${Cores.bege};
-    cursor: pointer;
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.2);
-    }
+  
   }
 
   h2 {
@@ -48,9 +34,8 @@ export const Sidebar = styled.div`
 `
 
 export const ItemList = styled.div`
-  flex-grow: 1;
   overflow-y: auto;
-  padding-right: 4px;
+
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -124,26 +109,27 @@ export const Total = styled.div`
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  margin: 1rem 0;
-  font-size: 1.1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid ${Cores.bege};
+  margin-top: 40px;
+  margin-bottom: 16px;
+  font-size: 14px;
 `
 
 export const CheckoutButton = styled.button`
   background: ${Cores.bege};
   color: ${Cores.vermelhoClaro};
   border: none;
-  padding: 0.75rem;
-  border-radius: 6px;
-  font-weight: bold;
+  padding: 4px 94px 4px 94px;
+  font-weight: 700;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   display: block;
-  width: 100%;
+  width: 344px;
+  height: 24px;
   transition: background 0.2s, color 0.2s, transform 0.2s;
-  font-size: 1rem;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
 
   &:hover {
     background: ${Cores.vermelhoClaro};

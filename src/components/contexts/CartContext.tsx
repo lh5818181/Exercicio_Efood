@@ -1,4 +1,4 @@
-// src/contexts/CartContext.tsx
+
 import React, {
   createContext,
   useContext,
@@ -15,7 +15,7 @@ export interface CartItem extends MenuItemData {
 interface CartContextData {
   items: CartItem[];
   total: number;
-  isOpen: boolean;               // ← controla visibilidade
+  isOpen: boolean;             
   add(item: MenuItemData, qty?: number): void;
   remove(id: string): void;
   toggleSidebar(): void;
@@ -29,7 +29,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // soma total
   const total = items.reduce(
     (sum, it) => sum + it.price * it.quantity,
     0
@@ -47,7 +46,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
       }
       return [...old, { ...item, quantity: qty }];
     });
-    setIsOpen(true);           // ← abre sidebar ao adicionar
+    setIsOpen(true);      
   }
 
   function remove(id: string) {
