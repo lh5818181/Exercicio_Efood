@@ -50,7 +50,7 @@ export default function CartSidebar() {
         </S.Total>
 
         {items.length > 0 && (
-          <S.CheckoutButton onClick={() => {/* navegar para /checkout se quiser */}}>
+          <S.CheckoutButton onClick={() => {}}>
             Continuar com a entrega
           </S.CheckoutButton>
         )}
