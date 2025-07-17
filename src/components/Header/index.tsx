@@ -1,4 +1,3 @@
-
 import * as S from './Styles'
 import heroImg from '../../assets/Fundo.png'
 import LogoImg from '../../assets/logo.png'
@@ -9,11 +8,7 @@ import { Link } from 'react-router-dom'
 
 export default function Header() {
   const dispatch = useDispatch()
-
-  // Seleciona items do slice de Redux
   const items = useSelector((state: RootState) => state.cart.items)
-
-  // Soma quantidades
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0)
 
   return (

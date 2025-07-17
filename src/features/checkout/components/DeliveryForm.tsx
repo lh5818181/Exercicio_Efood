@@ -31,8 +31,6 @@ const DeliveryForm: React.FC<Props> = ({ onNext, onBack }) => {
     <S.Form onSubmit={handleSubmit}>
       <S.Title>Entrega</S.Title>
 
-      {/* campos... */}
-      {/* repetindo sua lógica de Field/Label/Input */}
       {(
         [
           ['name', 'Quem irá receber'],

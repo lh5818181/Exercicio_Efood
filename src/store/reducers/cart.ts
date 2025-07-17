@@ -1,6 +1,5 @@
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { MenuItemData } from '../../../src/data/menuItems'
+import { MenuItemData } from '../../data/menuItems'
 
 export interface CartItem extends MenuItemData {
   quantity: number
@@ -27,7 +26,7 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, quantity: 1 })
       }
-      state.isOpen = true
+      state.isOpen = true  // abre o sidebar ao adicionar
     },
     removeItem: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(i => i.id !== action.payload)
@@ -38,8 +37,19 @@ const cartSlice = createSlice({
     closeCart: (state) => {
       state.isOpen = false
     },
+    resetCart: (state) => {
+      state.items = []    // limpa o carrinho
+      state.isOpen = false
+    },
   },
 })
 
-export const { addItem, removeItem, openCart, closeCart } = cartSlice.actions
+export const {
+  addItem,
+  removeItem,
+  openCart,
+  closeCart,
+  resetCart,    // ação para resetar carrinho
+} = cartSlice.actions
+
 export default cartSlice.reducer

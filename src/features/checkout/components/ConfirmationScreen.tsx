@@ -1,38 +1,101 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckout } from '../CheckoutContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../../../store'
+import { resetCart, closeCart } from '../../../store/reducers/cart'
 import * as S from '../styles'
 
-interface Props {
-  onReset(): void
+interface OrderResponse {
+  orderId: string
+  message: string
 }
 
-const ConfirmationScreen: React.FC<Props> = ({ onReset }) => {
-  const { deliveryData, paymentData } = useCheckout()
+export default function ConfirmationScreen() {
+  const { deliveryData, paymentData, reset } = useCheckout()
+  const cartItems = useSelector((s: RootState) => s.cart.items)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [order, setOrder] = useState<OrderResponse | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
   useEffect(() => {
-    if (!deliveryData || !paymentData) navigate('../delivery')
-  }, [deliveryData, paymentData, navigate])
+    if (!deliveryData) {
+      navigate('../delivery', { replace: true })
+      return
+    }
+    if (!paymentData) {
+      navigate('../payment', { replace: true })
+      return
+    }
+    if (cartItems.length === 0) {
+      dispatch(closeCart())
+      navigate('/', { replace: true })
+      return
+    }
+
+    // envia o pedido à API
+    fetch('https://fake-api-tau.vercel.app/api/efood/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        delivery: deliveryData,
+        payment: paymentData,
+        items: cartItems,
+      }),
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Falha ao enviar pedido.')
+        return res.json()
+      })
+      .then((data: OrderResponse) => {
+        setOrder(data)
+        setLoading(false)
+        dispatch(resetCart())  // limpa carrinho global
+        reset()                // limpa contexto de checkout
+      })
+      .catch(err => {
+        setError(err.message)
+        setLoading(false)
+      })
+  }, [
+    deliveryData,
+    paymentData,
+    cartItems,
+    dispatch,
+    navigate,
+    reset,
+  ])
+
+  if (loading) {
+    return (
+      <S.ConfirmationContainer>
+        <S.Title>Enviando pedido...</S.Title>
+      </S.ConfirmationContainer>
+    )
+  }
+
+  if (error) {
+    return (
+      <S.ConfirmationContainer>
+        <S.Title>Erro</S.Title>
+        <S.Text>{error}</S.Text>
+        <S.Button full onClick={() => navigate('/')}>
+          Voltar ao início
+        </S.Button>
+      </S.ConfirmationContainer>
+    )
+  }
 
   return (
     <S.ConfirmationContainer>
-      <S.Title>Pedido Confirmado! 🎉</S.Title>
-      <S.Text>
-        Obrigado, {deliveryData?.name}. <br /><br />
-        Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue
-         no endereço fornecido.<br /><br />
-        Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras. <br /><br />
-        Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua 
-        segurança e bem-estar durante a refeição.<br /><br />
-        Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
-      </S.Text>
-
-      <S.Button full onClick={onReset}>
+      <S.Title>Pedido realizado – {order!.orderId}</S.Title>
+      <S.Text>{order!.message}</S.Text>
+      <S.Button full onClick={() => navigate('/')}>
         Concluir
       </S.Button>
     </S.ConfirmationContainer>
   )
 }
-
-export default ConfirmationScreen

@@ -10,9 +10,9 @@ export interface DeliveryData {
 }
 
 export interface PaymentData {
-  nameOnCard: string           // Nome impresso no cartão
-  cardNumber: string           // Número do cartão
-  expiryMonth: string          // Mês de validade
-  expiryYear: string           // Ano de validade
-  cvv: string                  // Código de segurança
+  nameOnCard: string    // Nome impresso no cartão
+  cardNumber: string    // Número do cartão
+  expiryMonth: string   // Mês de validade (MM)
+  expiryYear: string    // Ano de validade (AA)
+  cvv: string           // Código de segurança
 }

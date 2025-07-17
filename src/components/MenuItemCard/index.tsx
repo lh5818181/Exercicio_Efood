@@ -1,16 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem, openCart } from '../../store/reducers/cart'
 import { MenuItemData } from '../../data/menuItems'
 import * as S from './styles'
-import ProductModal from '../ProductModal'
 
 interface MenuItemCardProps {
   item: MenuItemData
   variant: 'even' | 'odd'
-  onClick(): void
+  onClick(): void   
 }
 
 const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, variant, onClick }) => {
-  const [modalOpen, setModalOpen] = useState(false)
+  const dispatch = useDispatch()
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    dispatch(addItem(item))   // adiciona o item
+    dispatch(openCart())      // abre o sidebar
+  }
 
   return (
     <S.Card variant={variant} onClick={onClick}>
@@ -21,20 +28,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({ item, variant, onClick }) =
           ? item.description.slice(0, 190) + '...'
           : item.description}
       </S.Snippet>
-      <S.AddButton
-        onClick={e => {
-          e.stopPropagation()
-          setModalOpen(true)
-        }}
-      >
+      <S.AddButton onClick={handleAdd}>
         Adicionar ao carrinho
       </S.AddButton>
-      {modalOpen && (
-        <ProductModal
-          item={item}
-          onClose={() => setModalOpen(false)}
-        />
-      )}
     </S.Card>
   )
 }
