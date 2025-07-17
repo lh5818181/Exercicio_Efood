@@ -1,3 +1,4 @@
+// src/components/ProductModal/index.tsx
 import React from 'react'
 import { createPortal } from 'react-dom'
 import { ModalItemData } from '../../data/itemModal'
@@ -15,7 +16,7 @@ export default function ProductModal({ item, onClose }: Props) {
   const dispatch = useDispatch()
 
   const handleAdd = () => {
-    // converte ModalItemData para MenuItemData
+    // Adiciona e abre o sidebar
     dispatch(addItem({
       id: item.id.toString(),
       title: item.title,
@@ -23,8 +24,8 @@ export default function ProductModal({ item, onClose }: Props) {
       price: item.price,
       image: item.image,
     }))
-    dispatch(openCart())  // abre o sidebar
-    onClose()             // fecha o modal
+    dispatch(openCart())
+    onClose()
   }
 
   return createPortal(

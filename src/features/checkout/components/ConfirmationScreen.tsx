@@ -11,8 +11,12 @@ interface OrderResponse {
   message: string
 }
 
-export default function ConfirmationScreen() {
-  const { deliveryData, paymentData, reset } = useCheckout()
+interface Props {
+  onReset(): void
+}
+
+const ConfirmationScreen: React.FC<Props> = ({ onReset }) => {
+  const { deliveryData, paymentData } = useCheckout()
   const cartItems = useSelector((s: RootState) => s.cart.items)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -36,7 +40,7 @@ export default function ConfirmationScreen() {
       return
     }
 
-    // envia o pedido à API
+    // POST do pedido
     fetch('https://fake-api-tau.vercel.app/api/efood/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -53,8 +57,7 @@ export default function ConfirmationScreen() {
       .then((data: OrderResponse) => {
         setOrder(data)
         setLoading(false)
-        dispatch(resetCart())  // limpa carrinho global
-        reset()                // limpa contexto de checkout
+        dispatch(resetCart()) // limpa carrinho
       })
       .catch(err => {
         setError(err.message)
@@ -66,7 +69,6 @@ export default function ConfirmationScreen() {
     cartItems,
     dispatch,
     navigate,
-    reset,
   ])
 
   if (loading) {
@@ -93,9 +95,11 @@ export default function ConfirmationScreen() {
     <S.ConfirmationContainer>
       <S.Title>Pedido realizado – {order!.orderId}</S.Title>
       <S.Text>{order!.message}</S.Text>
-      <S.Button full onClick={() => navigate('/')}>
+      <S.Button full onClick={onReset}>
         Concluir
       </S.Button>
     </S.ConfirmationContainer>
   )
 }
+
+export default ConfirmationScreen

@@ -2,7 +2,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { store } from '../store'  // ajuste o caminho se necessário
+import { store } from '../store'
 
 import Home from '../pages/Home'
 import Profile from '../pages/Profile'
@@ -15,22 +15,21 @@ export default function AppRoutes() {
     // 1) Provider global do Redux
     <Provider store={store}>
       <BrowserRouter>
-
-        {/* 2) Sidebar de carrinho sempre montado */}
-        <CartSidebar />
-
-        {/* 3) Contexto de checkout apenas para as rotas de /checkout */}
+        {/* 2) CheckoutProvider engloba o CartSidebar e as rotas de checkout */}
         <CheckoutProvider>
+          {/* 3) Sidebar global do carrinho */}
+          <CartSidebar />
+
+          {/* 4) Definição de rotas */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/checkout/*" element={<CheckoutRoutes />} />
 
-            {/* Redireciona qualquer outra rota para a Home */}
+            {/* 5) Qualquer outra rota redireciona para Home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </CheckoutProvider>
-
       </BrowserRouter>
     </Provider>
   )

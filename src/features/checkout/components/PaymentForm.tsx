@@ -20,8 +20,9 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
   const { deliveryData } = useCheckout()
   const navigate = useNavigate()
 
+  // se não houver dados de entrega, volta
   useEffect(() => {
-    if (!deliveryData) navigate('../delivery')
+    if (!deliveryData) navigate('../delivery', { replace: true })
   }, [deliveryData, navigate])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
