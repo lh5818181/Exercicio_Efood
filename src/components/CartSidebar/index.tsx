@@ -1,4 +1,3 @@
-// src/components/CartSidebar/index.tsx
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store'
@@ -16,7 +15,7 @@ export default function CartSidebar() {
   const dispatch = useDispatch()
   const { items, isOpen } = useSelector((state: RootState) => state.cart)
 
-  // ✅ Hook de contexto deve estar no topo
+  // Contexto de checkout
   const {
     deliveryData,
     paymentData,
@@ -25,10 +24,9 @@ export default function CartSidebar() {
     reset
   } = useCheckout()
 
-  // ✅ Estado de passo do fluxo do carrinho
   const [step, setStep] = useState<Step>('cart')
 
-  // ✅ Se o carrinho estiver vazio, reseta o fluxo
+  // Se o carrinho esvaziar, volta ao passo inicial
   useEffect(() => {
     if (items.length === 0) {
       setStep('cart')
@@ -36,14 +34,13 @@ export default function CartSidebar() {
     }
   }, [items, reset])
 
-  // ✅ Fecha carrinho e reseta estado
   const handleClose = () => {
     dispatch(closeCart())
     setStep('cart')
     reset()
   }
 
-  // ✅ Finalização: limpa carrinho e estado do contexto
+  // Chamado apenas ao clicar em “Concluir” na confirmação
   const handleDone = () => {
     dispatch(resetCart())
     handleClose()
@@ -59,12 +56,7 @@ export default function CartSidebar() {
   return (
     <S.Overlay onClick={handleClose}>
       <S.Sidebar onClick={e => e.stopPropagation()}>
-        {/* Botão de fechar */}
-        <button className="close" onClick={handleClose}>
-          ×
-        </button>
 
-        {/* Etapa do carrinho */}
         {step === 'cart' && (
           <>
             <h2>Seu Carrinho</h2>
@@ -85,7 +77,7 @@ export default function CartSidebar() {
                   </S.Item>
                 ))
               ) : (
-                <S.EmptyMessage>Seu carrinho está vazio.</S.EmptyMessage>
+                <S.EmptyMessage>Carrinho vazio.</S.EmptyMessage>
               )}
             </S.ItemList>
 
@@ -103,7 +95,6 @@ export default function CartSidebar() {
           </>
         )}
 
-        {/* Etapa de entrega */}
         {step === 'delivery' && (
           <DeliveryForm
             onNext={data => {
@@ -114,7 +105,6 @@ export default function CartSidebar() {
           />
         )}
 
-        {/* Etapa de pagamento */}
         {step === 'payment' && (
           <PaymentForm
             onNext={data => {
@@ -125,7 +115,6 @@ export default function CartSidebar() {
           />
         )}
 
-        {/* Confirmação */}
         {step === 'confirmation' && (
           <ConfirmationScreen onReset={handleDone} />
         )}

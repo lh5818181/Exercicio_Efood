@@ -1,5 +1,5 @@
+// src/features/checkout/components/PaymentForm.tsx
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useCheckout } from '../CheckoutContext'
 import { PaymentData } from '../types'
 import * as S from '../styles'
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
+  const { deliveryData } = useCheckout()
   const [form, setForm] = useState<PaymentData>({
     nameOnCard: '',
     cardNumber: '',
@@ -17,13 +18,13 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
     expiryYear: '',
     cvv: '',
   })
-  const { deliveryData } = useCheckout()
-  const navigate = useNavigate()
 
-  // se não houver dados de entrega, volta
+  // não deixa acessar sem dados de entrega
   useEffect(() => {
-    if (!deliveryData) navigate('../delivery', { replace: true })
-  }, [deliveryData, navigate])
+    if (!deliveryData) onBack()
+  }, [deliveryData, onBack])
+
+  const total = deliveryData ? Number(deliveryData.number) : 0 // você pode trazer o total real do contexto/cart
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -37,7 +38,9 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
 
   return (
     <S.Form onSubmit={handleSubmit}>
-      <S.Title>Pagamento</S.Title>
+      <S.Title>
+        Pagamento – Valor a pagar R$ {total.toFixed(2)}
+      </S.Title>
 
       <S.Field>
         <S.Label>Nome no cartão</S.Label>
@@ -50,20 +53,32 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
         />
       </S.Field>
 
-      <S.Field>
-        <S.Label>Número do cartão</S.Label>
-        <S.Input
-          type="text"
-          name="cardNumber"
-          value={form.cardNumber}
-          onChange={handleChange}
-          required
-        />
-      </S.Field>
+      <S.Row>
+        <S.Field style={{ flex: 1 }}>
+          <S.Label>Número do cartão</S.Label>
+          <S.Input
+            type="text"
+            name="cardNumber"
+            value={form.cardNumber}
+            onChange={handleChange}
+            required
+          />
+        </S.Field>
+        <S.Field style={{ width: '6rem', marginLeft: '1rem' }}>
+          <S.Label>CVV</S.Label>
+          <S.Input
+            type="text"
+            name="cvv"
+            value={form.cvv}
+            onChange={handleChange}
+            required
+          />
+        </S.Field>
+      </S.Row>
 
-      <S.Flex>
-        <S.Field flex={1}>
-          <S.Label>MM</S.Label>
+      <S.Row>
+        <S.Field style={{ flex: 1 }}>
+          <S.Label>Mês de vencimento</S.Label>
           <S.Input
             type="text"
             name="expiryMonth"
@@ -72,8 +87,8 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
             required
           />
         </S.Field>
-        <S.Field flex={1}>
-          <S.Label>AA</S.Label>
+        <S.Field style={{ flex: 1, marginLeft: '1rem' }}>
+          <S.Label>Ano de vencimento</S.Label>
           <S.Input
             type="text"
             name="expiryYear"
@@ -82,27 +97,14 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
             required
           />
         </S.Field>
-      </S.Flex>
+      </S.Row>
 
-      <S.Field>
-        <S.Label>CVV</S.Label>
-        <S.Input
-          type="text"
-          name="cvv"
-          value={form.cvv}
-          onChange={handleChange}
-          required
-        />
-      </S.Field>
-
-      <S.Flex>
-        <S.Button type="button" onClick={onBack}>
-          Voltar
-        </S.Button>
-        <S.Button full type="submit">
-          Finalizar
-        </S.Button>
-      </S.Flex>
+      <S.Button full type="submit">
+        Finalizar pagamento
+      </S.Button>
+      <S.Button type="button" onClick={onBack}>
+        Voltar para a edição de endereço
+      </S.Button>
     </S.Form>
   )
 }

@@ -1,3 +1,4 @@
+// src/features/checkout/components/DeliveryForm.tsx
 import React, { useState } from 'react'
 import { DeliveryData } from '../types'
 import * as S from '../styles'
@@ -31,36 +32,79 @@ const DeliveryForm: React.FC<Props> = ({ onNext, onBack }) => {
     <S.Form onSubmit={handleSubmit}>
       <S.Title>Entrega</S.Title>
 
-      {(
-        [
-          ['name', 'Quem irá receber'],
-          ['address', 'Endereço'],
-          ['city', 'Cidade'],
-          ['cep', 'CEP'],
-          ['number', 'Número'],
-          ['complement', 'Complemento (opcional)'],
-        ] as [keyof DeliveryData, string][]
-      ).map(([field, label]) => (
-        <S.Field key={field}>
-          <S.Label>{label}</S.Label>
+      <S.Field>
+        <S.Label>Quem irá receber</S.Label>
+        <S.Input
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="João Paulo de Souza"
+          required
+        />
+      </S.Field>
+
+      <S.Field>
+        <S.Label>Endereço</S.Label>
+        <S.Input
+          type="text"
+          name="address"
+          value={form.address}
+          onChange={handleChange}
+          required
+        />
+      </S.Field>
+
+      <S.Field>
+        <S.Label>Cidade</S.Label>
+        <S.Input
+          type="text"
+          name="city"
+          value={form.city}
+          onChange={handleChange}
+          required
+        />
+      </S.Field>
+
+      <S.Row>
+        <S.Field style={{ flex: 1 }}>
+          <S.Label>CEP</S.Label>
           <S.Input
             type="text"
-            name={field}
-            value={form[field] || ''}
+            name="cep"
+            value={form.cep}
             onChange={handleChange}
-            required={field !== 'complement'}
+            required
           />
         </S.Field>
-      ))}
+        <S.Field style={{ flex: 1, marginLeft: '1rem' }}>
+          <S.Label>Número</S.Label>
+          <S.Input
+            type="text"
+            name="number"
+            value={form.number}
+            onChange={handleChange}
+            required
+          />
+        </S.Field>
+      </S.Row>
 
-      <S.Flex>
-        <S.Button type="button" onClick={onBack}>
-          Voltar
-        </S.Button>
-        <S.Button full type="submit">
-          Continuar
-        </S.Button>
-      </S.Flex>
+      <S.Field>
+        <S.Label>Complemento (opcional)</S.Label>
+        <S.Input
+          type="text"
+          name="complement"
+          value={form.complement}
+          onChange={handleChange}
+        />
+      </S.Field>
+
+      <S.Button full type="submit">
+        Continuar com o pagamento
+      </S.Button>
+      <S.Button type="button" onClick={onBack}>
+        Voltar para o carrinho
+      </S.Button>
     </S.Form>
   )
 }

@@ -1,3 +1,4 @@
+// src/features/checkout/components/ConfirmationScreen.tsx
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckout } from '../CheckoutContext'
@@ -12,43 +13,68 @@ interface OrderResponse {
 }
 
 interface Props {
-  onReset(): void
+  orderId?: string
+  onReset?: () => void
 }
 
-const ConfirmationScreen: React.FC<Props> = ({ onReset }) => {
-  const { deliveryData, paymentData } = useCheckout()
-  const cartItems = useSelector((s: RootState) => s.cart.items)
-  const dispatch = useDispatch()
+const ConfirmationScreen: React.FC<Props> = ({ orderId, onReset }) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { deliveryData, paymentData, reset } = useCheckout()
+  const items = useSelector((s: RootState) => s.cart.items)
 
   const [order, setOrder] = useState<OrderResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    if (orderId) {
+      setLoading(false)
+      return
+    }
     if (!deliveryData) {
-      navigate('../delivery', { replace: true })
+      navigate('/checkout/delivery', { replace: true })
       return
     }
     if (!paymentData) {
-      navigate('../payment', { replace: true })
+      navigate('/checkout/payment', { replace: true })
       return
     }
-    if (cartItems.length === 0) {
+    if (items.length === 0) {
       dispatch(closeCart())
       navigate('/', { replace: true })
       return
     }
 
-    // POST do pedido
+    const payload = {
+      products: items.map(i => ({ id: Number(i.id), price: i.price })),
+      delivery: {
+        receiver: deliveryData.name,
+        address: {
+          description: deliveryData.address,
+          city: deliveryData.city,
+          zipCode: deliveryData.cep,
+          number: Number(deliveryData.number),
+          complement: deliveryData.complement || '',
+        }
+      },
+      payment: {
+        card: {
+          name: paymentData.nameOnCard,
+          number: paymentData.cardNumber,
+          code: Number(paymentData.cvv),
+          expires: {
+            month: Number(paymentData.expiryMonth),
+            year: Number(paymentData.expiryYear),
+          }
+        }
+      }
+    }
+
     fetch('https://fake-api-tau.vercel.app/api/efood/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        delivery: deliveryData,
-        payment: paymentData,
-        items: cartItems,
-      }),
+      body: JSON.stringify(payload)
     })
       .then(res => {
         if (!res.ok) throw new Error('Falha ao enviar pedido.')
@@ -57,18 +83,19 @@ const ConfirmationScreen: React.FC<Props> = ({ onReset }) => {
       .then((data: OrderResponse) => {
         setOrder(data)
         setLoading(false)
-        dispatch(resetCart()) // limpa carrinho
       })
       .catch(err => {
         setError(err.message)
         setLoading(false)
       })
   }, [
+    orderId,
     deliveryData,
     paymentData,
-    cartItems,
+    items,
     dispatch,
     navigate,
+    reset
   ])
 
   if (loading) {
@@ -84,18 +111,46 @@ const ConfirmationScreen: React.FC<Props> = ({ onReset }) => {
       <S.ConfirmationContainer>
         <S.Title>Erro</S.Title>
         <S.Text>{error}</S.Text>
-        <S.Button full onClick={() => navigate('/')}>
+        <S.Button full onClick={() => (onReset ? onReset() : navigate('/'))}>
           Voltar ao início
         </S.Button>
       </S.ConfirmationContainer>
     )
   }
 
+  const finish = () => {
+    if (onReset) {
+      onReset()
+    } else {
+      dispatch(resetCart())
+      reset()
+      navigate('/')
+    }
+  }
+
+  const id = orderId || order!.orderId
+
   return (
     <S.ConfirmationContainer>
-      <S.Title>Pedido realizado – {order!.orderId}</S.Title>
-      <S.Text>{order!.message}</S.Text>
-      <S.Button full onClick={onReset}>
+      <S.Title>Pedido realizado – {id}</S.Title>
+
+      <S.Text>
+        Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
+      </S.Text>
+
+      <S.Text>
+        Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras.
+      </S.Text>
+
+      <S.Text>
+        Lembre‑se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem‑estar durante a refeição.
+      </S.Text>
+
+      <S.Text>
+        Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
+      </S.Text>
+
+      <S.Button full onClick={finish}>
         Concluir
       </S.Button>
     </S.ConfirmationContainer>

@@ -13,7 +13,7 @@ export const Overlay = styled.div`
 export const Sidebar = styled.div`
   width: 360px;
   height: 100% ;
-  padding: 40px 8px 0px 8px;
+  padding: 32px 8px 0px 8px;
   background: ${Cores.vermelhoClaro};
   color: ${Cores.bege};
   position: sticky;

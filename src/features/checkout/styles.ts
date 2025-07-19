@@ -1,72 +1,64 @@
+// src/features/checkout/styles.ts
 import styled from 'styled-components'
 import { Cores } from '../../styles/global'
 
-// Container geral de formulário
 export const Form = styled.form`
-  width: 100%;
   background: ${Cores.vermelhoClaro};
   color: ${Cores.bege};
-  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
 `
 
 export const Title = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 16px;
+  border-bottom: 1px solid ${Cores.bege};
+  padding-bottom: 0.5rem;
 `
 
-export const Field = styled.div<{ flex?: number }>`
-  display: flex;
-  flex-direction: column;
-  flex: ${({ flex }) => flex ?? 'unset'};
+export const Field = styled.div`
   margin-bottom: 1rem;
 `
 
 export const Label = styled.label`
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.25rem;
 `
 
 export const Input = styled.input`
-  padding: 8px 12px;
+  width: 100%;
+  padding: 0.5rem;
   border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  color: #111;
+  box-sizing: border-box;
+`
+
+export const Row = styled.div`
+  display: flex;
+  margin-bottom: 1rem;
 `
 
 export const Button = styled.button<{ full?: boolean }>`
+  width: ${({ full }) => (full ? '100%' : 'auto')};
+  display: block;
+  margin: ${({ full }) => (full ? '1rem 0' : '0.5rem 0')};
   padding: 0.75rem;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
   background: ${({ full }) => (full ? Cores.bege : 'transparent')};
   color: ${({ full }) => (full ? Cores.vermelhoClaro : Cores.bege)};
-  border: ${({ full }) => (full ? 'none' : `2px solid ${Cores.bege}`)};
-  width: ${({ full }) => (full ? '100%' : 'auto')};
-  margin-right: ${({ full }) => (full ? '0' : '1rem')};
-
-  &:hover {
-    opacity: 0.8;
-  }
-`
-
-export const Flex = styled.div`
-  display: flex;
-  gap: 1rem;
+  text-align: center;
+  border: ${({ full }) => (full ? 'none' : `1px solid ${Cores.bege}`)};
+  border-radius: 4px;
+  cursor: pointer;
 `
 
 export const ConfirmationContainer = styled.div`
-  padding: 24px;
-  max-width: 500px;
-  margin: 2rem auto;
   background: ${Cores.vermelhoClaro};
   color: ${Cores.bege};
-  border-radius: 8px;
+  padding: 1.5rem;
   text-align: center;
 `
 
 export const Text = styled.p`
-  margin-bottom: 1rem;
+  font-size: 0.9rem;
   line-height: 1.4;
+  margin-bottom: 1rem;
 `
