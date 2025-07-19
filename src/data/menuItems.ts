@@ -1,6 +1,4 @@
 
-import pizzaImg from '../assets/pizza.png';
-
 export interface MenuItemData {
   id: string;
   title: string;

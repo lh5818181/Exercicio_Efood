@@ -26,10 +26,14 @@ export const Sidebar = styled.div`
   }
 
   h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    border-bottom: 1px solid ${Cores.bege};
-    padding-bottom: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  leading-trim: none;
+  line-height: 100%;
+  letter-spacing: 0%;
+
   }
 `
 

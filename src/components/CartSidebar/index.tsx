@@ -17,8 +17,6 @@ export default function CartSidebar() {
 
   // Contexto de checkout
   const {
-    deliveryData,
-    paymentData,
     setDeliveryData,
     setPaymentData,
     reset
