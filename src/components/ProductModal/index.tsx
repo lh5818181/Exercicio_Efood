@@ -1,11 +1,10 @@
-// src/components/ProductModal/index.tsx
-import React from 'react'
+
 import { createPortal } from 'react-dom'
 import { ModalItemData } from '../../data/itemModal'
 import { useDispatch } from 'react-redux'
 import { addItem, openCart } from '../../store/reducers/cart'
 import * as S from './styles'
-import { CloseButton } from './styles'
+import closeIcon from '../../assets/close 1.png'
 
 interface Props {
   item: ModalItemData
@@ -16,7 +15,6 @@ export default function ProductModal({ item, onClose }: Props) {
   const dispatch = useDispatch()
 
   const handleAdd = () => {
-    // Adiciona e abre o sidebar
     dispatch(addItem({
       id: item.id.toString(),
       title: item.title,
@@ -41,9 +39,14 @@ export default function ProductModal({ item, onClose }: Props) {
             Adicionar ao carrinho – R$ {item.price.toFixed(2)}
           </S.AddModalButton>
         </S.Right>
-        <CloseButton className="close" onClick={onClose}>
-          ×
-        </CloseButton>
+        {/* Botão de fechar via imagem */}
+        <S.CloseImg
+          src={closeIcon}
+          alt="Fechar"
+          onClick={onClose}
+          width={16}
+          height={16}
+        />
       </S.Content>
     </S.Overlay>,
     document.body

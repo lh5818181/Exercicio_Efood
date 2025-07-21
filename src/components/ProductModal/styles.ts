@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import { Cores } from '../../styles/global';
+// src/components/ProductModal/styles.ts
+import styled from 'styled-components'
+import { Cores } from '../../styles/global'
 
 export const Overlay = styled.div`
   position: fixed;
@@ -9,7 +10,7 @@ export const Overlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 999;
-`;
+`
 
 export const Content = styled.div`
   background: ${Cores.vermelhoClaro};
@@ -23,7 +24,6 @@ export const Content = styled.div`
   flex-direction: row;
   align-items: flex-start;
 `
-    
 
 export const Left = styled.div`
   img {
@@ -31,12 +31,12 @@ export const Left = styled.div`
     height: 280px;
     object-fit: cover;
   }
-`;
+`
 
 export const Right = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
   h2 {
     font-size: 1.5rem;
@@ -48,35 +48,30 @@ export const Right = styled.div`
     line-height: 1.4;
     margin-bottom: 16px;
   }
-`;
-
-export const Price = styled.span`
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-`;
+`
 
 export const AddModalButton = styled.button`
   background: ${Cores.bege};
   color: ${Cores.vermelhoClaro};
-    padding: 4px 8px;
-    border: none;
-    font-weight: 700;
-    cursor: pointer;
-    transition: opacity 0.2s;
+  padding: 4px 8px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
 
   &:hover {
     opacity: 0.85;
   }
-`;
+`
 
-export const CloseButton = styled.button`
+// Novo componente para a imagem de fechar
+export const CloseImg = styled.img`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: ${Cores.bege};
+  top: 1rem;      /* ou 498px se usar px fixo, mas recomendado top:1rem */
+  right: 1rem;    /* ou left:1171px conforme layout absoluto */
+  width: 16px;
+  height: 16px;
   cursor: pointer;
-`;
+  opacity: 1;
+  transform: rotate(0deg);
+`

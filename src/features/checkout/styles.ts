@@ -6,7 +6,6 @@ export const Form = styled.form`
   color: ${Cores.bege};
   width: 100%;
   box-sizing: border-box;
-
 `
 
 export const Title = styled.h2`
@@ -37,11 +36,14 @@ export const Input = styled.input`
   border: none;
   box-sizing: border-box;
   margin-top: 8px;
+
+  &.error {
+    border: 2px solid red;
+  }
 `
 
 export const Row = styled.div`
   display: flex;
-
 `
 
 export const Button = styled.button<{ full?: boolean }>`
@@ -81,9 +83,3 @@ export const Text = styled.p`
   text-align: justify;
 `
 
-
-export const Error = styled.div`
-  color: #ffdddd;
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-`
