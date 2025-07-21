@@ -6,6 +6,7 @@ export const Form = styled.form`
   color: ${Cores.bege};
   width: 100%;
   box-sizing: border-box;
+
 `
 
 export const Title = styled.h2`

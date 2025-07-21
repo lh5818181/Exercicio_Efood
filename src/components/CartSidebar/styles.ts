@@ -33,7 +33,7 @@ export const Sidebar = styled.div`
   leading-trim: none;
   line-height: 100%;
   letter-spacing: 0%;
-
+  margin-bottom: 12px;
   }
 `
 

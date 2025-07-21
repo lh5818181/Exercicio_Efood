@@ -78,7 +78,7 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
               />
               <S.Error><ErrorMessage name="cardNumber" /></S.Error>
             </S.Field>
-            <S.Field style={{ width: '6rem', marginLeft: '1rem' }}>
+            <S.Field style={{ width: '6rem', marginLeft: '30px' }}>
               <S.Label htmlFor="cvv">CVV</S.Label>
               <Field
                 as={S.Input}
@@ -101,7 +101,7 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
               />
               <S.Error><ErrorMessage name="expiryMonth" /></S.Error>
             </S.Field>
-            <S.Field style={{ flex: 1, marginLeft: '1rem' }}>
+            <S.Field style={{ flex: 1, marginLeft: '34px' }}>
               <S.Label htmlFor="expiryYear">Ano de vencimento</S.Label>
               <Field
                 as={S.Input}
@@ -113,7 +113,7 @@ const PaymentForm: React.FC<Props> = ({ onNext, onBack }) => {
             </S.Field>
           </S.Row>
 
-          <S.Button full type="submit">Finalizar pagamento</S.Button>
+          <S.Button style={{ flex: 1, marginTop: '24px' }} full type="submit">Finalizar pagamento</S.Button>
           <S.Button full type="button" onClick={onBack}>
             Voltar para a edição de endereço
           </S.Button>

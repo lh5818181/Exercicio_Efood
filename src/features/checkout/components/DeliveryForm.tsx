@@ -103,6 +103,7 @@ const DeliveryForm: React.FC<Props> = ({ onNext, onBack }) => {
               id="complement"
               name="complement"
               autoComplete="address-line2"
+              style={{ marginBottom: '24px' }}
             />
             <S.Error><ErrorMessage name="complement" /></S.Error>
           </S.Field>

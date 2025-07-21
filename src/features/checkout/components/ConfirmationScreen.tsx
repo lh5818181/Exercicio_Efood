@@ -132,7 +132,7 @@ const ConfirmationScreen: React.FC<Props> = ({ orderId, onReset }) => {
 
   return (
     <S.ConfirmationContainer>
-      <S.Title>Pedido realizado – {id}</S.Title>
+      <S.Title style={{marginBottom: '16px'}}>Pedido realizado – {id}</S.Title>
 
       <S.Text>
         Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.
@@ -146,7 +146,7 @@ const ConfirmationScreen: React.FC<Props> = ({ orderId, onReset }) => {
         Lembre‑se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem‑estar durante a refeição.
       </S.Text>
 
-      <S.Text>
+      <S.Text style={{marginBottom: '24px'}} >
         Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
       </S.Text>
 
